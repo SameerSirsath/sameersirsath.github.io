@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Sites Embed Simulator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #1e1e1e;
+      font-family: sans-serif;
+      color: #ccc;
+    }
+    .banner {
+      background: #2d3748;
+      padding: 10px 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #4a5568;
+    }
+    .frame-container {
+      width: 100vw;
+      height: calc(100vh - 42px);
+      border: none;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <span>🔍 Google Sites Iframe Sandbox Simulator Preview</span>
+    <span>Source: index.html</span>
+  </div>
+  <div class="frame-container">
+    <iframe src="index.html" sandbox="allow-scripts allow-forms allow-popups allow-modals"></iframe>
+  </div>
+</body>
+</html>
