@@ -494,16 +494,19 @@
       -webkit-backdrop-filter: blur(28px);
       border: 1.5px solid rgba(255, 255, 255, 0.9);
       border-radius: 48px 48px 140px 48px;
-      box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.12), inset 0 2px 0 rgba(255, 255, 255, 1);
+      box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.14), inset 0 2px 0 rgba(255, 255, 255, 1);
       overflow: hidden;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      animation: floatFrame 7s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
     .organic-glass-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 32px 70px -15px rgba(99, 102, 241, 0.22), inset 0 2px 0 rgba(255, 255, 255, 1);
     }
 
     .hero-headshot-img {
@@ -512,101 +515,99 @@
       object-fit: cover;
       object-position: center top;
       border-radius: inherit;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Floating Badges on Hero Frame */
-    .floating-glass-badge {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      border-radius: var(--radius-md);
-      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
-      z-index: 5;
-      animation: floatBadge 6s ease-in-out infinite alternate;
+    .organic-glass-card:hover .hero-headshot-img {
+      transform: scale(1.025);
     }
 
-    /* Top-Right Experience Badge */
-    .badge-top-right {
-      top: 25px;
-      right: -20px;
-      padding: 0.85rem 1.15rem;
-      text-align: center;
+    @keyframes floatFrame {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-9px) rotate(0.4deg);
+      }
+      100% {
+        transform: translateY(-4px) rotate(-0.3deg);
+      }
     }
 
-    .badge-huge-num {
-      font-family: var(--font-heading);
-      font-size: 1.65rem;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1;
-    }
-
-    .badge-sub-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-
-    /* Bottom-Right ML Distinction Sparkline Badge */
-    .badge-bottom-right {
-      bottom: 35px;
-      right: -25px;
-      padding: 0.85rem 1.15rem;
-      animation-delay: -3s;
-      min-width: 170px;
-    }
-
-    .badge-metric-header {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .badge-metric-val {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 800;
+    /* Typing Effect Cursor */
+    .typing-cursor {
+      display: inline-block;
+      font-weight: 300;
       color: #6366f1;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+      margin-left: 2px;
+      animation: blinkCursor 0.9s infinite;
     }
 
-    .sparkline-svg {
-      width: 100%;
-      height: 28px;
-      margin-top: 0.35rem;
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
-    /* Floating 3D Sparkle Glass Orb */
-    .floating-sparkle-orb {
-      position: absolute;
-      bottom: 110px;
-      left: -24px;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(216, 180, 254, 0.4) 60%, rgba(168, 85, 247, 0.25) 100%);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 12px 24px -4px rgba(168, 85, 247, 0.3), inset -2px -2px 6px rgba(168, 85, 247, 0.2), inset 2px 2px 6px rgba(255, 255, 255, 0.9);
-      display: flex;
+    /* Scroll Reveal Engine */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* Live Radar Pulse Indicator */
+    .live-radar-dot {
+      position: relative;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #8b5cf6;
-      z-index: 6;
-      animation: floatBadge 5s ease-in-out infinite alternate;
-      animation-delay: -1.5s;
+      width: 8px;
+      height: 8px;
     }
 
-    @keyframes floatBadge {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-8px); }
+    .live-radar-dot::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #10b981;
+      animation: liveRadarPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .live-radar-dot::after {
+      content: '';
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    @keyframes liveRadarPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+      70% {
+        transform: scale(3.2);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(3.5);
+        opacity: 0;
+      }
     }
 
     /* ==========================================================================
@@ -1617,18 +1618,9 @@
 
       .organic-glass-card {
         max-width: 320px;
-        height: 420px;
+        height: 380px;
         border-radius: 36px 36px 90px 36px;
-      }
-
-      .badge-top-right {
-        right: -10px;
-        top: 15px;
-      }
-
-      .badge-bottom-right {
-        right: -10px;
-        bottom: 20px;
+        margin: 0 auto;
       }
 
       /* Prevent iOS Safari zoom bug on form fields */
@@ -1708,7 +1700,7 @@
           </div>
 
           <h1 class="hero-name">Sameer Sirsath</h1>
-          <h2 class="hero-title-gradient">AI &amp; Machine Learning Engineer</h2>
+          <h2 class="hero-title-gradient"><span id="typed-text">AI &amp; Machine Learning Engineer</span><span class="typing-cursor">|</span></h2>
 
           <p class="hero-desc">
             3rd-year B.Tech CSE (AI &amp; ML) student at MIT Academy of Engineering, Pune. Building context-aware RAG systems, accessibility platforms, and IoT road-safety intelligence with purpose and precision.
@@ -1753,40 +1745,10 @@
           </div>
         </div>
 
-        <!-- Right Column: Organic Frosted Glass Squircle with Photo & Floating Badges -->
+        <!-- Right Column: Organic Frosted Glass Squircle Headshot -->
         <div class="hero-visual-col">
           <div class="organic-glass-card">
             <img src="sameer-photo.jpg" alt="Sameer Sirsath" class="hero-headshot-img">
-          </div>
-
-          <!-- Floating Badge 1 (Top-Right): Current Year & Standing -->
-          <div class="floating-glass-badge badge-top-right">
-            <div class="badge-huge-num">3rd</div>
-            <div class="badge-sub-label">Year B.Tech CSE (AI &amp; ML)</div>
-          </div>
-
-          <!-- Floating Badge 2 (Bottom-Right): ML Distinction Sparkline -->
-          <div class="floating-glass-badge badge-bottom-right">
-            <div class="badge-metric-header">IIT Madras ML Distinction</div>
-            <div class="badge-metric-val">
-              <span>94 / 100</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-            </div>
-            <!-- Clean SVG Sparkline -->
-            <svg class="sparkline-svg" viewBox="0 0 100 25" fill="none">
-              <path d="M0 20 Q 25 18, 40 12 T 75 8 T 100 2" stroke="url(#sparkGradient)" stroke-width="2.5" stroke-linecap="round"></path>
-              <defs>
-                <linearGradient id="sparkGradient" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#6366f1"></stop>
-                  <stop offset="100%" stop-color="#06b6d4"></stop>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-
-          <!-- Floating 3D Sparkle Glass Bubble -->
-          <div class="floating-sparkle-orb" title="Building with AI">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           </div>
         </div>
 
@@ -1821,27 +1783,27 @@
           <!-- Right: Key Metric Cards -->
           <div>
             <div class="about-stats-row">
-              <div class="stat-glass-card">
+              <div class="stat-glass-card reveal-item delay-1">
                 <div class="stat-icon-wrap">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                 </div>
-                <div class="stat-bold-number">3rd</div>
+                <div class="stat-bold-number counter-value" data-target="3" data-suffix="rd">3rd</div>
                 <div class="stat-caption">Year Standing</div>
               </div>
 
-              <div class="stat-glass-card">
+              <div class="stat-glass-card reveal-item delay-2">
                 <div class="stat-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                 </div>
-                <div class="stat-bold-number">7.64</div>
+                <div class="stat-bold-number counter-value" data-target="7.64" data-decimals="2">7.64</div>
                 <div class="stat-caption">Current CGPA</div>
               </div>
 
-              <div class="stat-glass-card">
+              <div class="stat-glass-card reveal-item delay-3">
                 <div class="stat-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                 </div>
-                <div class="stat-bold-number">4+</div>
+                <div class="stat-bold-number counter-value" data-target="4" data-suffix="+">4+</div>
                 <div class="stat-caption">Production Projects</div>
               </div>
             </div>
@@ -1873,7 +1835,7 @@
 
       <div class="services-grid">
         <!-- Service 1: Generative AI & RAG -->
-        <div class="service-glass-card">
+        <div class="service-glass-card reveal-item delay-1">
           <div>
             <div class="service-icon-box icon-amber">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
@@ -1889,7 +1851,7 @@
         </div>
 
         <!-- Service 2: Backend & API Engineering -->
-        <div class="service-glass-card">
+        <div class="service-glass-card reveal-item delay-2">
           <div>
             <div class="service-icon-box icon-violet">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
@@ -1905,7 +1867,7 @@
         </div>
 
         <!-- Service 3: ML & Predictive Analytics -->
-        <div class="service-glass-card">
+        <div class="service-glass-card reveal-item delay-3">
           <div>
             <div class="service-icon-box icon-blue">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -1921,7 +1883,7 @@
         </div>
 
         <!-- Service 4: IoT & Embedded Systems -->
-        <div class="service-glass-card">
+        <div class="service-glass-card reveal-item delay-4">
           <div>
             <div class="service-icon-box icon-teal">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
@@ -1983,9 +1945,9 @@
 
       <div class="projects-3col-grid">
         <!-- Project 1: Chatbot for PWDs -->
-        <article class="project-glass-card">
+        <article class="project-glass-card reveal-item delay-1">
           <div class="project-card-thumb">
-            <span class="project-badge-pill" style="background: rgba(16, 185, 129, 0.9);">● Live on Render</span>
+            <span class="project-badge-pill" style="background: rgba(16, 185, 129, 0.9); display: inline-flex; align-items: center; gap: 6px;"><span class="live-radar-dot"></span> Live on Render</span>
             <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="AI Chatbot for PWDs">
           </div>
           <div class="project-card-body">
@@ -2017,7 +1979,7 @@
         </article>
 
         <!-- Project 2: Anti-Sleeping System for Drivers -->
-        <article class="project-glass-card">
+        <article class="project-glass-card reveal-item delay-2">
           <div class="project-card-thumb">
             <span class="project-badge-pill" style="background: rgba(245, 158, 11, 0.9);">IoT &amp; Hardware</span>
             <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" alt="Anti Sleeping System">
@@ -2049,7 +2011,7 @@
         </article>
 
         <!-- Project 3: Medical Devices RAG Assistant -->
-        <article class="project-glass-card">
+        <article class="project-glass-card reveal-item delay-3">
           <div class="project-card-thumb">
             <span class="project-badge-pill" style="background: rgba(99, 102, 241, 0.9);">Industry Project</span>
             <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Medical Equipment RAG">
@@ -2093,7 +2055,7 @@
 
       <div class="journey-steps-grid">
         <!-- Milestone 01 -->
-        <div class="step-glass-card">
+        <div class="step-glass-card reveal-item delay-1">
           <div class="step-num-badge">01</div>
           <h3 class="step-card-title">AI/ML Intern</h3>
           <div class="step-org-subtitle">Sagveek Technologies Pvt. Ltd. (Pune)</div>
@@ -2103,7 +2065,7 @@
         </div>
 
         <!-- Milestone 02 -->
-        <div class="step-glass-card">
+        <div class="step-glass-card reveal-item delay-2">
           <div class="step-num-badge">02</div>
           <h3 class="step-card-title">Technical Coordinator</h3>
           <div class="step-org-subtitle">Department Student Association (MITAOE)</div>
@@ -2113,7 +2075,7 @@
         </div>
 
         <!-- Milestone 03 -->
-        <div class="step-glass-card">
+        <div class="step-glass-card reveal-item delay-3">
           <div class="step-num-badge">03</div>
           <h3 class="step-card-title">Research &amp; Hackathons</h3>
           <div class="step-org-subtitle">Avishkar Convention &amp; ADCET Finalist</div>
@@ -2123,7 +2085,7 @@
         </div>
 
         <!-- Milestone 04 -->
-        <div class="step-glass-card">
+        <div class="step-glass-card reveal-item delay-4">
           <div class="step-num-badge">04</div>
           <h3 class="step-card-title">Academic Foundation</h3>
           <div class="step-org-subtitle">MIT Academy of Engineering, Pune</div>
@@ -2146,7 +2108,7 @@
 
       <div class="certs-grid">
         <!-- Cert 1 -->
-        <div class="cert-glass-card">
+        <div class="cert-glass-card reveal-item delay-1">
           <div>
             <div class="cert-issuer-badge">IIT Madras Pravartak</div>
             <h3 class="cert-name">Machine Learning Certified Course</h3>
@@ -2156,7 +2118,7 @@
         </div>
 
         <!-- Cert 2 -->
-        <div class="cert-glass-card">
+        <div class="cert-glass-card reveal-item delay-2">
           <div>
             <div class="cert-issuer-badge" style="color: #f59e0b;">Udacity &amp; AWS Educate</div>
             <h3 class="cert-name">Introducing Generative AI with AWS</h3>
@@ -2166,7 +2128,7 @@
         </div>
 
         <!-- Cert 3 -->
-        <div class="cert-glass-card">
+        <div class="cert-glass-card reveal-item delay-3">
           <div>
             <div class="cert-issuer-badge" style="color: #06b6d4;">Cisco / OpenEDG</div>
             <h3 class="cert-name">Python Essentials 1 &amp; 2</h3>
@@ -2176,7 +2138,7 @@
         </div>
 
         <!-- Cert 4 -->
-        <div class="cert-glass-card">
+        <div class="cert-glass-card reveal-item delay-4">
           <div>
             <div class="cert-issuer-badge" style="color: #ec4899;">Oracle</div>
             <h3 class="cert-name">Database Design &amp; SQL</h3>
@@ -2195,7 +2157,7 @@
         <div class="contact-grid">
 
           <!-- Left Info Column -->
-          <div class="contact-info-col">
+          <div class="contact-info-col reveal-item delay-1">
             <span class="section-label-pill">LET'S CONNECT</span>
             <h3>Have a project in mind?<br>Let's create something amazing together.</h3>
             <p>
@@ -2240,7 +2202,7 @@
           </div>
 
           <!-- Right Glass Form Card -->
-          <div class="contact-form-glass">
+          <div class="contact-form-glass reveal-item delay-2">
             <div id="formStatusBanner" class="form-status-banner"></div>
 
             <form id="contactForm" onsubmit="handleFormSubmit(event)">
@@ -2461,6 +2423,103 @@
         submitBtn.innerHTML = originalText;
       }
     }
+
+    // 5. Dynamic Typing Subtitle Effect
+    const typedEl = document.getElementById('typed-text');
+    if (typedEl) {
+      const titles = [
+        'AI & Machine Learning Engineer',
+        'RAG & Generative AI Builder',
+        'Python & Backend Developer',
+        'Data Analyst & Problem Solver',
+        'IoT Road Safety Innovator'
+      ];
+      let titleIdx = 0;
+      let charIdx = titles[0].length;
+      let isDeleting = true;
+      let typeSpeed = 50;
+
+      function typeLoop() {
+        const currentTitle = titles[titleIdx];
+        if (isDeleting) {
+          charIdx--;
+          typedEl.textContent = currentTitle.substring(0, charIdx);
+          typeSpeed = 35;
+        } else {
+          charIdx++;
+          typedEl.textContent = currentTitle.substring(0, charIdx);
+          typeSpeed = 65;
+        }
+
+        if (!isDeleting && charIdx === currentTitle.length) {
+          isDeleting = true;
+          typeSpeed = 2200; // Pause when full text is typed
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          titleIdx = (titleIdx + 1) % titles.length;
+          typeSpeed = 400; // Pause before typing next title
+        }
+
+        setTimeout(typeLoop, typeSpeed);
+      }
+
+      // Initial delay before first deletion starts
+      setTimeout(typeLoop, 2000);
+    }
+
+    // 6. Scroll Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal-item').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 7. Stat Counter Animation Observer
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseFloat(counter.getAttribute('data-target'));
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+          const duration = 1400;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = easeProgress * target;
+
+            counter.textContent = currentVal.toFixed(decimals) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target.toFixed(decimals) + suffix;
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+          statObserver.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter-value').forEach(el => {
+      statObserver.observe(el);
+    });
   </script>
 </body>
 
