@@ -1580,52 +1580,401 @@
     }
 
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
+
+      .app-layout {
+        padding: 0 1rem;
+      }
+
+      /* Floating Header on Mobile */
+      .nav-floating-container {
+        top: 0.6rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .nav-glass-bar {
+        padding: 0.45rem 0.75rem;
+      }
+
       .nav-menu-pills {
         display: none;
       }
 
+      .nav-actions .talk-btn {
+        display: none;
+      }
+
+      .nav-actions .resume-btn-nav {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.78rem;
+        gap: 0.35rem;
+      }
+
       .nav-mobile-toggle {
         display: flex;
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-icon-box {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+      }
+
+      .brand-name {
+        font-size: 0.92rem;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      /* Hero Section Mobile */
+      .hero-section {
+        padding: 0.5rem 0 2.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
       }
 
       .hero-name {
-        font-size: 2.8rem;
+        font-size: clamp(2.2rem, 8vw, 2.75rem);
+        line-height: 1.12;
       }
 
       .hero-title-gradient {
-        font-size: 1.65rem;
+        font-size: clamp(1.25rem, 5vw, 1.6rem);
+        line-height: 1.25;
+        min-height: 2.4em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .services-grid,
-      .journey-steps-grid,
-      .certs-grid,
-      .projects-3col-grid {
-        grid-template-columns: 1fr;
+      .hero-desc {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        max-width: 100%;
+        margin: 0 auto 1.75rem;
+      }
+
+      .hero-cta-group {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 2rem;
+        gap: 0.75rem;
+      }
+
+      .hero-cta-group a {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.25rem;
+        font-size: 0.92rem;
+      }
+
+      .organic-glass-card {
+        max-width: 270px;
+        height: 320px;
+        border-radius: 36px 36px 85px 36px;
+        margin: 0 auto;
+      }
+
+      .hero-affiliations {
+        width: 100%;
+      }
+
+      .affiliations-pills {
+        gap: 0.4rem;
+      }
+
+      .affil-item {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.74rem;
+      }
+
+      /* Section Containers */
+      .section-container {
+        padding: 2.75rem 0;
+      }
+
+      .section-main-title {
+        font-size: clamp(1.65rem, 5.5vw, 2.05rem);
+        line-height: 1.22;
+      }
+
+      .section-sub-desc {
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      /* About Section Mobile */
+      .about-card-wrapper {
+        padding: 1.75rem 1.15rem;
+        border-radius: var(--radius-lg);
       }
 
       .about-stats-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-top: 1.5rem;
       }
 
-      .about-card-wrapper,
+      .stat-glass-card {
+        padding: 0.9rem 0.4rem;
+        border-radius: var(--radius-sm);
+      }
+
+      .stat-icon-wrap {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 0.35rem;
+      }
+
+      .stat-bold-number {
+        font-size: clamp(1.2rem, 4.5vw, 1.55rem);
+      }
+
+      .stat-caption {
+        font-size: 0.68rem;
+        line-height: 1.2;
+      }
+
+      /* Services Mobile */
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.75rem;
+      }
+
+      .service-glass-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: var(--radius-md);
+      }
+
+      /* Tools Dock Tray */
+      .tools-dock-card {
+        padding: 1.5rem 1rem;
+        border-radius: var(--radius-lg);
+        margin-top: 1.5rem;
+      }
+
+      .tools-grid {
+        gap: 0.5rem;
+      }
+
+      .tech-dock-pill {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.8rem;
+        gap: 0.45rem;
+      }
+
+      /* Projects Mobile */
+      .projects-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+      }
+
+      .projects-header-row .btn-glass-pill {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .projects-3col-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-card-thumb {
+        height: 180px;
+      }
+
+      .project-card-body {
+        padding: 1.35rem 1.15rem;
+      }
+
+      .project-card-title {
+        font-size: 1.18rem;
+      }
+
+      .project-card-desc {
+        font-size: 0.86rem;
+      }
+
+      .project-actions-row {
+        padding-top: 0.85rem;
+      }
+
+      .project-link-action.btn-live {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+      }
+
+      /* Journey Milestones Mobile */
+      .journey-steps-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.75rem;
+      }
+
+      .step-glass-card {
+        padding: 1.4rem 1.2rem;
+        border-radius: var(--radius-md);
+      }
+
+      /* Credentials Mobile */
+      .certs-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.75rem;
+      }
+
+      .cert-glass-card {
+        padding: 1.35rem 1.15rem;
+        border-radius: var(--radius-md);
+      }
+
+      /* Contact Section Mobile */
       .contact-card-wrapper {
-        padding: 2rem 1.25rem;
+        padding: 1.75rem 1.15rem;
+        border-radius: var(--radius-lg);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+      }
+
+      .contact-info-col h3 {
+        font-size: 1.35rem;
+        line-height: 1.3;
+      }
+
+      .contact-row-item {
+        gap: 0.75rem;
+        font-size: 0.88rem;
+      }
+
+      .contact-row-item span {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .contact-icon-bubble {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+      }
+
+      .social-pills-glass {
+        gap: 0.65rem;
+      }
+
+      .social-pill-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+      }
+
+      .contact-form-glass {
+        padding: 1.35rem 1.15rem;
+        border-radius: var(--radius-md);
       }
 
       .glass-form-row {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
 
-      .organic-glass-card {
-        max-width: 320px;
-        height: 380px;
-        border-radius: 36px 36px 90px 36px;
-        margin: 0 auto;
+      .ambient-contact-orb {
+        display: none;
       }
 
       /* Prevent iOS Safari zoom bug on form fields */
       input, textarea {
         font-size: 16px !important;
+      }
+
+      .form-submit-pill-btn {
+        width: 100%;
+        padding: 0.85rem 1.25rem;
+        font-size: 0.95rem;
+      }
+
+      /* Footer Mobile */
+      .glass-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+        padding: 2rem 0;
+        align-items: center;
+      }
+
+      .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-layout {
+        padding: 0 0.75rem;
+      }
+
+      .hero-name {
+        font-size: 2.15rem;
+      }
+
+      .hero-title-gradient {
+        font-size: 1.25rem;
+      }
+
+      .organic-glass-card {
+        max-width: 240px;
+        height: 285px;
+      }
+
+      .about-stats-row {
+        gap: 0.4rem;
+      }
+
+      .stat-glass-card {
+        padding: 0.75rem 0.25rem;
+      }
+
+      .stat-bold-number {
+        font-size: 1.25rem;
+      }
+
+      .stat-caption {
+        font-size: 0.62rem;
+      }
+
+      .tools-dock-card {
+        padding: 1.25rem 0.75rem;
+      }
+
+      .tech-dock-pill {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.76rem;
+      }
+
+      .about-card-wrapper,
+      .contact-card-wrapper {
+        padding: 1.4rem 0.9rem;
+      }
+
+      .mobile-drawer-sheet {
+        width: 90%;
+        padding: 1.75rem 1.15rem;
       }
     }
   </style>
@@ -2320,11 +2669,25 @@
     const mobileToggle = document.getElementById('mobileToggleBtn');
     const mobileClose = document.getElementById('mobileCloseBtn');
 
-    function openMenu() { mobileDrawer.classList.add('open'); }
-    function closeMenu() { mobileDrawer.classList.remove('open'); }
+    function openMenu() {
+      mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
     if (mobileToggle) mobileToggle.addEventListener('click', openMenu);
     if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+
+    if (mobileDrawer) {
+      mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) {
+          closeMenu();
+        }
+      });
+    }
 
     document.querySelectorAll('.mobile-nav-item').forEach(item => {
       item.addEventListener('click', () => {
